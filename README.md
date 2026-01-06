@@ -97,7 +97,7 @@ VSCode を利用している場合、コマンドパレットから `Run Task` -
 ### 事前準備(Keycloak設定)
 
 動作確認を行うために、まずKeycloak側に必要な設定を入れます。  
-Keycloakの管理コンソール [http://localhost/auth/](http://localhost:8080/) で設定変更可能です。  
+Keycloakの管理コンソール [http://localhost:8080/](http://localhost:8080/) で設定変更可能です。  
 
 1. 動作確認環境のRealm(=設定を入れ込む領域)の作成  
   ドキュメント: [Configuring realms](https://www.keycloak.org/docs/latest/server_admin/index.html#_configuring-realms)

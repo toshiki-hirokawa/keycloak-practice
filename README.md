@@ -108,12 +108,12 @@ Keycloakの管理コンソール [http://localhost/auth/](http://localhost/auth/
 
 ### Login Demo
 
-`{realm}` `{client_id}` に作成したRealm名とclient名を入れて、以下URLを叩いてみてください。  
+`${realm}` `${client_id}` に作成したRealm名とclient名を入れて、以下URLを叩いてみてください。
 Keycloakのログイン画面が表示され、作成したUserの情報でログインに成功すると、`redirect_uri`で設定しているURLへと自動でリダイレクトします。  
 
 ```txt
-http://localhost/auth/realms/{realm}/protocol/openid-connect/auth
-    ?client_id={client_id}
+http://localhost/auth/realms/${realm}/protocol/openid-connect/auth
+    ?client_id=${client_id}
     &response_type=code
     &scope=openid
     &redirect_uri=https://www.google.com/
@@ -126,7 +126,9 @@ http://localhost/auth/realms/{realm}/protocol/openid-connect/auth
 
 ### Logout Demo
 
-[http://localhost/auth/realms/EIAM/protocol/openid-connect/logout](http://localhost/auth/realms/EIAM/protocol/openid-connect/logout)
+```txt
+http://localhost/auth/realms/${realm}/protocol/openid-connect/logout
+```
 
 ### Required Action Demo
 

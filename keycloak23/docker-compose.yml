@@ -1,0 +1,38 @@
+services:
+  keycloak:
+    build:
+      context: .
+      dockerfile: keycloak/Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    volumes:
+      - ./keycloak/realm-export.json:/opt/keycloak/data/import/realm-export.json
+    command: "start-dev --import-realm"
+
+  demo-server:
+    build:
+      context: ..
+      dockerfile: shared/demo-server/Dockerfile
+    ports:
+      - "8081:8081"
+
+  setup:
+    build:
+      context: ..
+      dockerfile: shared/scripts/Dockerfile
+    depends_on:
+      - keycloak
+    environment:
+      KC_URI_BASE: http://keycloak:8080
+      KC_REALM_MASTER: master
+      KC_REALM_SERVICE: sample_realm
+      KEYCLOAK_ADMIN_USERNAME: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KEYCLOAK_CLIENT_SAMPLE_SECRET: sample-secret-****************
+    volumes:
+      - ../shared/scripts/setup.sh:/tmp/setup.sh
+    entrypoint: >
+      sh -c "sh /tmp/setup.sh"

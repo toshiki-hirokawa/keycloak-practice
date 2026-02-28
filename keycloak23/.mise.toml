@@ -1,0 +1,28 @@
+[tools]
+bun = "latest"
+java = "corretto-17"
+
+[tasks.build]
+description = "Build Keycloak provider JARs"
+run = "./mvnw clean install"
+
+[tasks.dev]
+description = "Build and start all services"
+depends = ["build"]
+run = '''
+if command -v docker > /dev/null 2>&1; then
+  docker compose up --build
+else
+  podman compose up --build
+fi
+'''
+
+[tasks.stop]
+description = "Stop all services"
+run = '''
+if command -v docker > /dev/null 2>&1; then
+  docker compose down
+else
+  podman compose down
+fi
+'''

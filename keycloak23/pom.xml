@@ -1,0 +1,11 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.example.keycloak23</groupId>
+    <artifactId>keycloak-practice-build</artifactId>
+    <packaging>pom</packaging>
+    <version>0.1.1-SNAPSHOT</version>
+
+    <modules>
+        <module>keycloak</module>
+    </modules>
+</project>
